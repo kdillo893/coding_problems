@@ -3,7 +3,7 @@
 #include <stdio.h>  // for "null" pointer, might be better off using 0
 #include <stdlib.h> // for malloc/free
 
-inline char * multiply(char * num1, char * num2) {
+char * multiply(char * num1, char * num2) {
 
   //edge cases:
   // either of the strings are null:

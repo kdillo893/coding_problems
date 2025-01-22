@@ -1,28 +1,22 @@
-#                                               -*- Autoconf -*-
-# Process this file with autoconf to produce a configure script.
-# WARNING: THIS IS STILL BORKEN
+AC_PREREQ
+AC_INIT([leetcode], [1.0], [kdillo893@gmail.com])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
-AC_PREREQ([2.72])
-AC_INIT([coding_problems_c], [0.0.1], [kdillo893@gmail.com])
-AC_CONFIG_SRCDIR([leetcode.c]) # for checking correct dir on run
-AC_CONFIG_HEADERS([config.h]) # where I'm having a config header for this...
-AM_INIT_AUTOMAKE
+# AC_CONFIG_SRCDIR([src/leetcode.c])
+AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([Makefile]) 
 
-# Checks for programs.
+#program flags for checking we have these in path
+AC_PROG_AWK
 AC_PROG_CC
+# AC_PROG_CPP
+# AC_PROG_INSTALL
+# AC_PROG_LN_S
+#check for the linking of the library included
+# AC_CHECK_LIB()
 
-# Checks for libraries.
-
-# Checks for header files.
-
-# Checks for typedefs, structures, and compiler characteristics.
+#validate that headers and functions are included in compilation
 AC_CHECK_HEADER_STDBOOL
-AC_C_INLINE
-
-# Checks for library functions.
-AC_FUNC_MALLOC
-
-#do this before output to finalize configure
-AC_CONFIG_FILES([Makefile])
-
+# AC_CHECK_HEADERS([])
+# AC_CHECK_FUNCS([])
 AC_OUTPUT

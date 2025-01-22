@@ -11,12 +11,12 @@
  *     struct ListNode *next;
  * };
  */
-inline struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
   return removeNthFromEndV1(head, n);
   // return removeNthFromEndV2(head, n);
 }
 
-inline struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
+struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
   //edge cases: 
   //  null pointer for the head.
   if (head == NULL) {
@@ -61,7 +61,7 @@ inline struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
   return head;
 }
 
-inline struct ListNode* removeNthFromEndV2(struct ListNode* head, int n) {
+struct ListNode* removeNthFromEndV2(struct ListNode* head, int n) {
   //edge cases: 
   //  null pointer for the head.
   if (head == NULL) {

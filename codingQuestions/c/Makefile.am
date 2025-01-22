@@ -1,20 +1,21 @@
-## Process this file with automake to produce Makefile.in
-
-AUTOMAKE_OPTIONS = subdir-objects foreign
-
-SUBDIRS = src/funcs src/headers
-include_HEADERS = src/headers/ishappynum.h src/headers/isSorted.h src/headers/removeNthFromEnd.h src/headers/longcommonprefix.h src/headers/mergestrings.h src/headers/mergesort.h src/headers/multiplystrings.h src/headers/findball.h src/headers/removeDupes.h src/headers/removeelement.h src/headers/spiralorder.h
-leetcode = leetcode
-leetcode_SOURCES=src/leetcode.c
-
-#subdirHeaders = src/headers
-
+## Process this file with automake to produce Makefile.in: use toplevel
+AUTOMAKE_OPTIONS = subdir-objects
 bin_PROGRAMS = leetcode
+leetcodedir= .
+leetcode_CFLAGS= -Wall -Werror
+leetcode_SOURCES= leetcode.c funcs/findball.c funcs/isSorted.c funcs/mergestrings.c funcs/removeelement.c funcs/helpers.c funcs/longcommonprefix.c funcs/multiplystrings.c funcs/removeNthFromEnd.c funcs/ishappynum.c funcs/mergesort.c funcs/removeDupes.c funcs/spiralorder.c
+leetcode_HEADERS = headers/ishappynum.h headers/isSorted.h headers/removeNthFromEnd.h headers/longcommonprefix.h headers/mergestrings.h headers/mergesort.h headers/multiplystrings.h headers/findball.h headers/removeDupes.h headers/removeelement.h headers/spiralorder.h
+leetcode_LDADD = $(LIBOBJS)
+# libs to add
+# leetcode_LDADD= 
+# library options for inclusion in source (dynamic or static linking)
+# leetcode_LDFLAGS= -static
+# SUBDIRS = funcs 
 
 ## some rules to test...
-clean-local:
-	@rm config.status configure config.log Makefile -r autom4te.cache/ aclocal.m4 compile install-sh missing Makefile.in depcomp config.guess config.h.in config.sub
-
+# clean-local:
+# 	@rm config.status configure config.log Makefile -r autom4te.cache/ aclocal.m4 compile install-sh missing Makefile.in depcomp config.guess config.h.in config.sub
+#
 
 #Notes for self:
 #	 $<  translates to "the first prereq"
