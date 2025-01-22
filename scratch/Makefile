@@ -1,13 +1,12 @@
 CC=gcc
-CFLAGS=-W -g 
+CFLAGS=-Wall -Werror -g 
 
 ODIR=obj
 LDIR =../lib
 
 LIBS=-lm
 
-%.o:
-	make $(patsubst %, $(ODIR)/%, $@)
+all: typecheck relearning simple_filewrite
 
 #make condition for "objdir/%.o", then need to find ways for objects to make here.
 $(ODIR)/%.o: %.c $(DEPS)
@@ -15,15 +14,18 @@ $(ODIR)/%.o: %.c $(DEPS)
 
 _TC_OBJS = typecheck.o
 _SW_OBJS = simple_filewrite.o
+_RL_OBJS = relearning.o
 
-typecheck: $(_TC_OBJS)
-	$(CC) -o $@ $(patsubst %, $(ODIR)/%, $^) $(CFLAGS) $(LIBS)
-
-simple_filewrite: $(_SW_OBJS)
+typecheck: $(ODIR)/$(_TC_OBJS)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
+simple_filewrite: $(ODIR)/$(_SW_OBJS)
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+
+relearning: $(ODIR)/relearning.o
+	$(CC) -o $@ $^ $(CFLAGS) $(LIBS) -I $(ODIR)
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o testfile.txt simple_filewrite typecheck 
+	rm -f $(ODIR)/*.o testfile.txt simple_filewrite typecheck relearning

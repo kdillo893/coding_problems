@@ -1,9 +1,13 @@
 #include<stdio.h>
 
 
-void main(int argc, char* argv[], char* envp[]) {
-	char c 		= 0x41424344;
-	int i 		= 1.5;
+int main(int argc, char* argv[], char* envp[]) {
+  //the below errors 
+  // char c 		= 0x41424344;
+  char c = '1';
+  //the below errors 
+	//int i 		= 1.5;
+  int i = 1;
 	unsigned int u 	= -1;
 	float f 	= 10;
 	double d 	= 2.5F;
