@@ -10,7 +10,7 @@
 #include "headers/isSorted.h"
 #include "headers/ishappynum.h"
 #include "headers/longcommonprefix.h"
-#include "headers/mergesort.h"
+#include "headers/sorts.h"
 #include "headers/mergestrings.h"
 #include "headers/multiplystrings.h"
 #include "headers/removeDupes.h"
@@ -197,7 +197,7 @@ void mergeSortTest() {
   int nums2[5] = {1, 2, 3, 6, 7};
 
   printf("[4,5,8,9,10] with [1,2,3,6,7]:\n");
-  merge(nums1, nums1Size, nums1Len, nums2, nums2Size, nums2Len);
+  mergeSort(nums1, nums1Size, nums1Len, nums2, nums2Size, nums2Len);
 
   printIntArray(nums1, nums1Size);
 
@@ -209,7 +209,7 @@ void mergeSortTest() {
   int nums4[9] = {4, 5, 6, 7, 8, 9, 10, 11, 12};
 
   printf("[1,2,3] with [4,5,6,7,8,9,10,11,12]:\n");
-  merge(nums3, nums3Size, nums3Len, nums4, nums4Size, nums4Len);
+  mergeSort(nums3, nums3Size, nums3Len, nums4, nums4Size, nums4Len);
 
   printIntArray(nums3, nums3Size);
 
