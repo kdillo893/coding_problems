@@ -3,8 +3,8 @@ AUTOMAKE_OPTIONS = subdir-objects
 bin_PROGRAMS = leetcode
 leetcodedir= .
 leetcode_CFLAGS= -Wall -Werror
-leetcode_SOURCES= leetcode.c funcs/findball.c funcs/isSorted.c funcs/mergestrings.c funcs/removeelement.c funcs/helpers.c funcs/longcommonprefix.c funcs/multiplystrings.c funcs/removeNthFromEnd.c funcs/ishappynum.c funcs/mergesort.c funcs/removeDupes.c funcs/spiralorder.c
-leetcode_HEADERS = headers/ishappynum.h headers/isSorted.h headers/removeNthFromEnd.h headers/longcommonprefix.h headers/mergestrings.h headers/mergesort.h headers/multiplystrings.h headers/findball.h headers/removeDupes.h headers/removeelement.h headers/spiralorder.h
+leetcode_SOURCES= leetcode.c funcs/findball.c funcs/isSorted.c funcs/mergestrings.c funcs/removeelement.c funcs/helpers.c funcs/longcommonprefix.c funcs/multiplystrings.c funcs/removeNthFromEnd.c funcs/ishappynum.c funcs/sorts.c funcs/removeDupes.c funcs/spiralorder.c funcs/searches.c
+leetcode_HEADERS = headers/ishappynum.h headers/isSorted.h headers/removeNthFromEnd.h headers/longcommonprefix.h headers/mergestrings.h headers/sorts.h headers/multiplystrings.h headers/findball.h headers/removeDupes.h headers/removeelement.h headers/spiralorder.h headers/searches.h
 leetcode_LDADD = $(LIBOBJS)
 # libs to add
 # leetcode_LDADD= 
