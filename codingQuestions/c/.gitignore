@@ -1,5 +1,6 @@
 # object files
-src/objs/*.o
+**/*.o
+*.o
 
 # the executable
 leetcode
@@ -16,3 +17,10 @@ install-sh
 missing
 *.log
 **/.deps
+
+# configure things 
+config.guess
+config.h.in*
+config.sub
+configure.scan
+configure*
