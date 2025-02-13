@@ -1,10 +1,10 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/random.h>
 
 // library for large numbers
 #include <gmp.h>
-#include <string.h>
 
 // function decs
 int isPrime(mpz_t *number, gmp_randstate_t *seed);
@@ -15,6 +15,8 @@ int millerRabinRound(mpz_t *n, mpz_t *nmin1, mp_bitcnt_t s, mpz_t *q,
 /**
  * 1 if is prime, 0 if not
  * if divisible by 2 up to sqrt(number), is not prime.
+ *
+ * FUN FACT: mpz_probab_prime_p does effectively this
  */
 int isProbablyPrime(mpz_t *number, gmp_randstate_t *seed) {
 
@@ -60,12 +62,12 @@ int millerRabin(mpz_t *number, int rounds, gmp_randstate_t *seed) {
     power2++;
   }
 
-  printf("mrr vals:\npow2 aka (s) = %ld", power2);
-  printf("\nq = \n");
-  mpz_out_str(stdout, 16, q);
-  printf("\nn-1 = \n");
-  mpz_out_str(stdout, 16, nmin1);
-  printf("\n\n");
+  // printf("mrr vals:\npow2 aka (s) = %ld", power2);
+  // printf("\nq = \n");
+  // mpz_out_str(stdout, 16, q);
+  // printf("\nn-1 = \n");
+  // mpz_out_str(stdout, 16, nmin1);
+  // printf("\n\n");
 
   for (int i = 0; i < rounds; i++) {
     // select an "a" for this round, 2 <= a <= n-2
@@ -77,11 +79,11 @@ int millerRabin(mpz_t *number, int rounds, gmp_randstate_t *seed) {
     mpz_urandomm(atest, *seed, atest);
     mpz_add_ui(atest, atest, 2);
 
-    printf("round%d: ", i);
+    // printf("round%d: ", i);
     // have an appropriate a, q, s, n... do a round.
     int composite = millerRabinRound(number, &nmin1, power2, &q, &atest);
-    printf("composite=%d", composite);
-    printf("\n");
+    // printf("composite=%d", composite);
+    // printf("\n");
 
     if (composite) {
       return 0;
@@ -109,17 +111,17 @@ int millerRabinRound(mpz_t *n, mpz_t *nmin1, mp_bitcnt_t s, mpz_t *q,
     return 0;
   }
 
-  printf("\na = \n");
-  mpz_out_str(stdout, 16, *atest);
-  printf("\nx = \n");
-  mpz_out_str(stdout, 16, x);
-  printf("\n");
+  // printf("\na = \n");
+  // mpz_out_str(stdout, 16, *atest);
+  // printf("\nx = \n");
+  // mpz_out_str(stdout, 16, x);
+  // printf("\n");
 
   mpz_t y;
   mpz_init(y);
 
   for (int i = 0; i < s; i++) {
-    printf("i=%d\n", i);
+    // printf("i=%d\n", i);
     // each step y = x^2 mod n (this goes from 2^0 to 2^s over loop)
     mpz_powm_ui(y, x, 2, *n);
 
@@ -134,19 +136,6 @@ int millerRabinRound(mpz_t *n, mpz_t *nmin1, mp_bitcnt_t s, mpz_t *q,
   }
 
   return 0;
-}
-
-/**
- * find a large seed using random library for variance; allow input of seed.
- */
-void largePrime(mpz_t *prime, gmp_randstate_t *seed) {
-
-  // if seed provided, use in srand; no need to force it to a specific value
-  // Assuming seed is provided for now...
-  mpz_urandomb(*prime, *seed, 4096);
-  mpz_nextprime(*prime, *prime);
-
-  return;
 }
 
 /**
@@ -167,39 +156,81 @@ void primeMod(mpz_t *result, mpz_t *base, mpz_t *power, mpz_t *prime) {
  * https://en.wikipedia.org/wiki/Primitive_root_modulo_n
  * Primitive root calc assistance found in links below:
  * https://math.stackexchange.com/questions/124408/finding-a-primitive-root-of-a-prime-number
+ * https://crypto.stackexchange.com/questions/820/how-does-one-calculate-a-primitive-root-for-diffie-hellman
+ * AES - https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf
  */
-unsigned long long int generatePrimitiveRoot(unsigned long long int p) {
+void generatePrimitiveRoot(mpz_t *primroot, mpz_t *prime) {
 
   // simple check is to go for common denominators of euler thing of p (aka p-1)
   // TODO
 
-  return 0;
+  return;
 }
 
 int main(int argc, char *argv[]) {
 
   // this is an array declaration
   gmp_randstate_t bigSeed;
+  unsigned long int seed;
 
-  char *seed = NULL;
+  int bitCountPrime = 4096;
   if (argc >= 2) {
-    strcpy(seed, argv[1]);
+    bitCountPrime = atoi(argv[1]);
   }
+
+  if (argc >= 3) {
+    seed = atoi(argv[2]);
+  } else {
+    int arraySize = 1;
+    unsigned long int randbuff[arraySize];
+    getrandom(randbuff, arraySize, 0);
+    for (int i = 0; i < arraySize; i++) {
+      unsigned long int val = randbuff[i];
+      printf("%d'th value: %lu\n", i, val);
+      seed ^= val;
+      printf("seedstep %d: %lu\n", i, seed);
+    }
+  }
+
+  printf("seed#=%lu", seed);
 
   // if the seed is there as parameter, parse the characters into gmp number.
   gmp_randinit_default(bigSeed);
+  gmp_randseed_ui(bigSeed, seed);
 
   mpz_t p;
   mpz_init(p);
   mpz_set_ui(p, 0);
 
-  largePrime(&p, &bigSeed);
+  //burning a random number to see if that fixes things
+  mpz_urandomb(p, bigSeed, bitCountPrime);
+  //get a random large prime
+  mpz_urandomb(p, bigSeed, bitCountPrime);
+  mpz_nextprime(p, p);
 
-  mpz_out_str(stdout, 16, p);
   printf("\n");
   assert(isProbablyPrime(&p, &bigSeed));
 
-  // unsigned long long int g = generatePrimitiveRoot(p);
+  mpz_out_str(stdout, 16, p);
+  printf("\n is probably prime\n");
+  printf("\nDigit size in base 2?:\n");
+  printf("%d", mpz_sizeinbase(p, 2));
+
+  // does gmp library think this is prime?
+  int probPrime = mpz_probab_prime_p(p, 30);
+  printf("GMP says it's %s\n", probPrime == 2   ? "definitely prime"
+                               : probPrime == 1 ? "probably prime"
+                                                : "not prime");
+
+  // primitive root guessing based on p
+  mpz_t g;
+  mpz_init(p);
+  //  = generatePrimitiveRoot(p);
+  //
+  //
+
+  // memory cleanup
+  gmp_randclear(bigSeed);
 
   return EXIT_SUCCESS;
 }
