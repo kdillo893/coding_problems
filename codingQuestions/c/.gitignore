@@ -10,17 +10,22 @@ Makefile.in
 aclocal.m4
 autom4te.cache/
 compile
-config.h.in
-configure
 depcomp
 install-sh
 missing
 *.log
 **/.deps
+Makefile
+stamp**
+**/.dirstamp
 
 # configure things 
 config.guess
 config.h.in*
 config.sub
+config.h
+config.status
+config.h.in
 configure.scan
 configure*
+configure
