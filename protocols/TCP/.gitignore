@@ -1,0 +1,4 @@
+# generated files
+tcp_client
+tcp_server
+objs/**
