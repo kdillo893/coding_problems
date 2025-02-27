@@ -1,5 +1,9 @@
-# generated files
+# compilation generated files
 typecheck
 simple_filewrite
 relearning
 obj/
+
+# files created through the executables:
+newFile
+testFile
