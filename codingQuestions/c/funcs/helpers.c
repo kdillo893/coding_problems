@@ -16,7 +16,7 @@ void printIntArray(int *arr, int size) {
   printf("]\n");
 }
 
-void printLinkedList(struct ListNode *currNode) {
+void printLinkedList(ListNode *currNode) {
   printf("[");
 
   while (currNode != NULL) {

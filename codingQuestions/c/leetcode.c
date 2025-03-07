@@ -146,25 +146,27 @@ void multiplyStringsTest() {
   char *product = multiply(num1, num2);
 
   printf("%s * %s = %s\n\n", num1, num2, product);
+
+  free(product);
 }
 
 void removeNthFromEndTest() {
   // put the type into node_t, makes it easier to reference.
-  typedef struct ListNode node_t;
+  typedef struct node_t ListNode;
 
   // prep...
   typedef struct {
-    node_t *head;
+    ListNode *head;
   } int_list;
 
   int_list *theList = (int_list *)malloc(sizeof(int_list));
   theList->head = NULL;
 
   // initializing list...
-  node_t *priorNode = NULL;
+  ListNode *priorNode = NULL;
   for (int i = 0; i < 5; i++) {
-    node_t *currNode = NULL;
-    currNode = (node_t *)malloc(sizeof(node_t));
+    ListNode *currNode = NULL;
+    currNode = (ListNode *)malloc(sizeof(ListNode));
     currNode->next = NULL;
     currNode->val = i;
 
@@ -178,7 +180,7 @@ void removeNthFromEndTest() {
   }
 
   // before:
-  node_t *currNode = theList->head;
+  ListNode *currNode = theList->head;
   printf("before:\n");
   printLinkedList(currNode);
 
@@ -186,6 +188,16 @@ void removeNthFromEndTest() {
 
   printf("after:\n");
   printLinkedList(currNode);
+
+  //freeing things
+  currNode = theList->head;
+  while (currNode) {
+    ListNode *last = currNode;
+    currNode = currNode->next;
+    free(last);
+  }
+
+  free(theList);
 }
 
 void mergeSortTest() {

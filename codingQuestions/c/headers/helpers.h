@@ -12,4 +12,4 @@ void printIntArray(int* arr, int size);
 /**
  * Print a linked list sequentially, like "[a, b, c, ...]\n"
  */
-void printLinkedList(struct ListNode* currNode);
+void printLinkedList(ListNode* currNode);

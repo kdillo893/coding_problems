@@ -6,17 +6,17 @@
 // I forget why everything has "inline", might test without later.
 /**
  * Definition for singly-linked list.
- * struct ListNode {
+ * ListNode {
  *     int val;
- *     struct ListNode *next;
+ *     ListNode *next;
  * };
  */
-struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
+ListNode* removeNthFromEnd(ListNode* head, int n) {
   return removeNthFromEndV1(head, n);
   // return removeNthFromEndV2(head, n);
 }
 
-struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
+ListNode* removeNthFromEndV1(ListNode* head, int n) {
   //edge cases: 
   //  null pointer for the head.
   if (head == NULL) {
@@ -25,7 +25,7 @@ struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
   
   //find the length of the list.
   int length = 0;
-  struct ListNode * currNode = head;
+  ListNode * currNode = head;
   while(currNode != NULL) {
     currNode = currNode->next;
     length++;
@@ -44,7 +44,7 @@ struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
 
   //removing the N'th; this is effectively the "ith" node.
   currNode = head;
-  struct ListNode * prevNode;
+  ListNode * prevNode;
 
   //use n to trace through, no need for a new variable.
   //process:
@@ -61,7 +61,7 @@ struct ListNode* removeNthFromEndV1(struct ListNode* head, int n) {
   return head;
 }
 
-struct ListNode* removeNthFromEndV2(struct ListNode* head, int n) {
+ListNode* removeNthFromEndV2(ListNode* head, int n) {
   //edge cases: 
   //  null pointer for the head.
   if (head == NULL) {
@@ -70,9 +70,9 @@ struct ListNode* removeNthFromEndV2(struct ListNode* head, int n) {
   
   //find the length of the list.
   int length = 0;
-  struct ListNode * currNode = head;
-  struct ListNode * nthBeforeEnd = NULL;
-  struct ListNode * priorToNthBeforeEnd = NULL;
+  ListNode * currNode = head;
+  ListNode * nthBeforeEnd = NULL;
+  ListNode * priorToNthBeforeEnd = NULL;
   while(currNode != NULL) {
     currNode = currNode->next;
     length++;

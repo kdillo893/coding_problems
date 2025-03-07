@@ -30,7 +30,7 @@ IntMap *initIntMap() {
 
   // I need to pre-allocate heads of linked lists; these are a series of
   // pointers to MapNode
-  map->nodes = calloc(buckets, sizeof(MapNode));
+  map->nodes = calloc(buckets, sizeof(MapNode*));
 
   //  ensure nodes have null on pointer
   // for (int i = 0; i < buckets; i++) {
@@ -60,6 +60,7 @@ void freeIntMap(IntMap *map) {
     }
   }
 
+  free(map->nodes);
   free(map);
 }
 
@@ -229,6 +230,7 @@ void testTwoSum() {
   if (retSize >= 2) {
     printf("sumtargets found at indexes [%d,%d]\n", res[0], res[1]);
     printf("target=%d, values: [%d,%d]\n",targetValue, n1[res[0]], n1[res[1]]);
+    free(res);
   } else {
     printf("no sumtargets found\n");
   }
