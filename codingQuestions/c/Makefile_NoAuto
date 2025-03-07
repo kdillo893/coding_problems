@@ -6,8 +6,8 @@ WARNINGS= -Wall -Wextra
 LIBS= 
 #DEPS= nothing right now...
 
-FUNCDIR := src/funcs
-OBJDIR := src/objs
+FUNCDIR := funcs
+OBJDIR := objs
 
 SOURCES := $(wildcard $(FUNCDIR)/*.c)
 OBJS := $(patsubst $(FUNCDIR)/%.c, $(OBJDIR)/%.o, $(SOURCES)) 
@@ -24,10 +24,10 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 clean:
-	rm src/objs/*.o ./leetcode
+	rm $(OBJDIR)/*.o ./leetcode
 
 leetcode: $(OBJS) 
-	$(CC) $(CFLAGS) $(WARNINGS) -o leetcode src/leetcode.c $^
+	$(CC) $(CFLAGS) $(WARNINGS) -o leetcode leetcode.c $^
 
 #Notes for self:
 #	 $<  translates to "the first prereq"

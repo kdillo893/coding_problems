@@ -17,6 +17,7 @@
 #include "headers/removeNthFromEnd.h"
 #include "headers/removeelement.h"
 #include "headers/spiralorder.h"
+#include "headers/twosum.h"
 
 // TODO: move the test functions into separate folder for tests, have a test
 // execution
@@ -340,6 +341,11 @@ int main() {
   printf("IsSorted test:\n\n");
   isSortedTest();
   printf("\n");
+
+  printf("IsSorted test:\n\n");
+  testTwoSum();
+  printf("\n");
+
 
   return 0;
 }

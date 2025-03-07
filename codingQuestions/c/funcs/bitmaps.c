@@ -24,7 +24,7 @@ void setBitmap(unsigned long long bmp[4], char c) {
   SET_BIT_LL(bmp[i], c & ~hiBits);
 }
 
-int main(int argc, char *argv[]) {
+int testBitmap(int argc, char *argv[]) {
 
   unsigned long long bitmap[4] = {0, 0, 0, 0};
 
