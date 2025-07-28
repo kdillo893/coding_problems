@@ -1,0 +1,5 @@
+objs/
+
+
+# the output file for make
+huffman
