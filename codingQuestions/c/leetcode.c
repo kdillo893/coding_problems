@@ -10,12 +10,12 @@
 #include "headers/isSorted.h"
 #include "headers/ishappynum.h"
 #include "headers/longcommonprefix.h"
-#include "headers/sorts.h"
 #include "headers/mergestrings.h"
 #include "headers/multiplystrings.h"
 #include "headers/removeDupes.h"
 #include "headers/removeNthFromEnd.h"
 #include "headers/removeelement.h"
+#include "headers/sorts.h"
 #include "headers/spiralorder.h"
 #include "headers/twosum.h"
 
@@ -189,7 +189,7 @@ void removeNthFromEndTest() {
   printf("after:\n");
   printLinkedList(currNode);
 
-  //freeing things
+  // freeing things
   currNode = theList->head;
   while (currNode) {
     ListNode *last = currNode;
@@ -357,7 +357,6 @@ int main() {
   printf("IsSorted test:\n\n");
   testTwoSum();
   printf("\n");
-
 
   return 0;
 }

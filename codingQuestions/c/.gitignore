@@ -27,5 +27,5 @@ config.h
 config.status
 config.h.in
 configure.scan
-configure*
+configure~
 configure

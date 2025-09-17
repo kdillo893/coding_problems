@@ -4,7 +4,7 @@ This is a set of my work regarding various coding challenges that I come across.
 
 Also included in this are implementations of protocols and practice within specific domains.
 
-## codingQuestions
+## [codingQuestions](./codingQuestions/)
 Answers to coding questions asked on websites around the web:
 (leetcode, boot.dev, etc)
 
@@ -29,3 +29,5 @@ database organization, but whatever.
 
 ## scratch
 Random files that don't fit into a category and are just testing briefly
+
+## [algorithms](./algorithms/)

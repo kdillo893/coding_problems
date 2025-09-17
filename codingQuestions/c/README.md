@@ -1,46 +1,27 @@
 # C coding things
 
-## PreReqs
-I changed things to use autotools for the build process for no good reason. It 
-still uses manually entered targets for sources to compile, but whatever!
-
-### autotools setup
-first in the base directory, run
-```
-aclocal
-```
-
-then
-```
-autoconf
-```
-. Ignore the warning. Then
-```
-autoheader
-```
-Then
-```
-automake -a
-```
-
-The -a is needed to add some configure files and scripts that are missing.
-That should give you a working configure script. Go ahead and run
-```
-./configure
-```
-
-This will give you a working makefile
 
 ## Building
 If you want to avoid my bad autotools usage, just do this:
-
 ```
 make -f Makefile_NoAuto
 ```
 
-trying out some autoconfig and automake stuff. This is probably stupid, but whatever.
+### Autotools build process
+> [!WARNING]
+> I believe autotools building is broken, but try just in case
+
+Run the following in sequence:
+```
+autoconf
+```
+
+```
+automake
+```
 
 After the autotools prereq, you can now just run
+
 ```
 make
 ```
@@ -59,8 +40,13 @@ make clean
 ```
 
 if you want to remove some of the "building autotools" garbage, run
+
 ```
 make distclean
 ```
 
 this will require you to run the configure script again before make.
+
+## Autotools alternative:
+I tried to make things work with autotools, which is why there are a bunch of files 
+related to that. I'll try to figure that out again sometime.

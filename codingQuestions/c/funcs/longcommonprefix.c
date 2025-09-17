@@ -3,14 +3,17 @@
 // #include <stdio.h>
 #include <stdlib.h> // for malloc/free
 
-char* longestCommonPrefix(char **strs, int strsSize) {
+#define MAX_LEN 200
+
+char *longestCommonPrefix(char **strs, int strsSize) {
   // guard clauses:
   //   no words, no common.
   if (strsSize <= 0) {
-    char *empty = (char *) malloc(sizeof(char));
+    char *empty = (char *)malloc(sizeof(char));
     empty[0] = '\0';
     return empty;
   }
+
   //  one word, only common with itself.
   if (strsSize == 1) {
     return strs[0];
@@ -20,8 +23,8 @@ char* longestCommonPrefix(char **strs, int strsSize) {
   // shortest string.
   //  a way to do this without a string library is to go by index and loop
   //  over the "strs" outer arrays until one of them is '\0'
-  int maxidx = 200;
-  for (int idx = 0; idx < 200; idx++) {
+  int maxidx = MAX_LEN;
+  for (int idx = 0; idx < MAX_LEN; idx++) {
     int found = 0;
     for (int word = 0; word < strsSize; word++) {
       if (strs[word][idx] == '\0') {
@@ -64,11 +67,17 @@ char* longestCommonPrefix(char **strs, int strsSize) {
   }
 
   // copy the letters of the first word up to maxidx
-  char *common = (char *)malloc((maxidx + 1) * sizeof(char));
-  common[maxidx] = '\0';
+  char *common = calloc(maxidx + 1, sizeof(char));
+
+  // no malloc? broken.
+  if (common == NULL) {
+    return NULL;
+  }
+
   for (int idx = 0; idx < maxidx; idx++) {
     common[idx] = firstWord[idx];
   }
+  common[maxidx] = '\0';
 
   return common;
 }
