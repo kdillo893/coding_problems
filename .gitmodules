@@ -1,0 +1,3 @@
+[submodule "NetworkProtocols"]
+	path = NetworkProtocols
+	url = git@github.com:kdillo893/NetworkProtocols.git
