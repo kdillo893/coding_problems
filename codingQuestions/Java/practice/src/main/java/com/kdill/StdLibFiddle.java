@@ -1,3 +1,5 @@
+package com.kdill;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,7 +20,7 @@ public class StdLibFiddle {
   public static void main(String[] args) throws IOException {
     // first input string is name of file.
     if (args.length < 1) {
-      System.out.println("Usage: day3 [filename]");
+      System.out.println("Usage: StdLibFiddle [filename]");
       return;
     }
     Path path = Paths.get(args[0]);
