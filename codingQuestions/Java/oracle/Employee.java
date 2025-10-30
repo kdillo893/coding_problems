@@ -1,5 +1,3 @@
-package com.kdill.oracle;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
