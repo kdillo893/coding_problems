@@ -1,5 +1,9 @@
 using System;
 
+// I forgot which tutorial I was following to do this...
+// looks like it was this:
+// https://learn.microsoft.com/en-us/training/modules/guided-project-calculate-final-gpa/
+
 namespace Gpa {
 
   class MainClass {
@@ -53,9 +57,9 @@ namespace Gpa {
       Console.WriteLine($"{totalGradePoints}\t\t\t{totalCreditHours}");
       Console.WriteLine($"Total GPA: {gpaIntFloor}.{gpaFirstDec}{gpaSecondDec}\n");
 
-      Console.WriteLine($"{course1Name}\t\t\t{course1Grade}\t{course1Credit}");
-      Console.WriteLine($"{course2Name}\t\t\t{course2Grade}\t{course2Credit}");
-      Console.WriteLine($"{course3Name}\t\t\t{course3Grade}\t{course3Credit}");
+      Console.WriteLine($"{course1Name}\t\t{course1Grade}\t{course1Credit}");
+      Console.WriteLine($"{course2Name}\t\t{course2Grade}\t{course2Credit}");
+      Console.WriteLine($"{course3Name}\t\t{course3Grade}\t{course3Credit}");
       Console.WriteLine($"{course4Name}\t{course4Grade}\t{course4Credit}");
       Console.WriteLine($"{course5Name}\t\t{course5Grade}\t{course5Credit}");
 

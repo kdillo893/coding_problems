@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <AssemblyName>Gpa</AssemblyName>
+    <OutputPathLinux>bin/</OutputPathLinux>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="gpa.cs" />
+  </ItemGroup>
+  <Target Name="Build">
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Csc Sources="@(Compile)" OutputAssembly="$(OutputPathLinux)$(AssemblyName).exe" />
+  </Target>
+</Project>
