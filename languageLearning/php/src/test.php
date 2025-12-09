@@ -128,6 +128,32 @@ include("./includes/header.php");
   //checking some constants that define how php operates:
   echo "int size in bytes:". PHP_INT_SIZE. '<br/>';
   echo "int max:". PHP_INT_MAX. '<br/>';
+  echo "PHP float things?:". PHP_FLOAT_DIG. '<br/>';
+  echo "PI?:". M_PI. '<br/>';
+  echo "error things all:". E_ALL. ', deprecated:' . E_DEPRECATED. '<br/>';
+  echo "default path for file include:". DEFAULT_INCLUDE_PATH . '<br/>';
+
+  //constants
+  const MAX_BUFFER = 1024;
+  define('OTHER_CONSTANT', 1);
+  define('silly_name_constant', 1);
+
+  //causes fatal error...
+  //echo NON_EXISTING_CONSTANT;
+  echo MAX_BUFFER;
+  echo OTHER_CONSTANT;
+  echo silly_name_constant;
+
+  //does php have try? yes
+  try {
+    echo NOT_A_CONSTANT;
+  } catch (Error $er) {
+    $val = $er->getCode();
+    echo "oops! $er<br/> $val";
+  }
+
+  //what's in globals? every global-context variable, including built-in
+  //var_dump($GLOBALS);
 
   ?>
 

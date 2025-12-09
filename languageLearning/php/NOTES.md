@@ -17,6 +17,6 @@ HStore -> Heap store for "composite values", which contains "zero or more vslots
 "By reference" is done with &. normal variables just do direct vslot-vstore relations,
     but a vslot can point to a vstore with &, then the old vstore is deleted
 
-PHP is garbage collected as an interpreter
+PHP is garbage-collected as an interpreter
 
 
